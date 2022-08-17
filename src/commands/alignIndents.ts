@@ -23,13 +23,13 @@ export default function alignIndents(tEditor: vsc.TextEditor, edit: vsc.TextEdit
 
 			for (const [k, line] of lines.entries()) {
 				const 
-					[indent, content] = separateIndent(line),
+					[indent, payload] = separateIndent(line),
 					offset = getIndentOffset(indent, opts),
 					lModel: ILineModel = {
 						type: "ILineModel",
 						raw: line,
 						indent,
-						content,
+						payload,
 						offset,
 					};
 				if (!k) {
@@ -103,7 +103,7 @@ export default function alignIndents(tEditor: vsc.TextEditor, edit: vsc.TextEdit
 					}
 				} else if (node.type === "ILineModel") {
 					const 
-						pl = node.content,
+						pl = node.payload,
 						line = pl ? baseIndent + TAB.repeat(level)+pl : "";
 					newLines.push(line);
 				} else {}
@@ -182,6 +182,6 @@ interface ILineModel {
 	type:    "ILineModel";
 	raw:     string;
 	indent:  string;
-	content: string;
+	payload: string;
 	offset:  number;
 }
