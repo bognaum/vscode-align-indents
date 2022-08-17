@@ -48,37 +48,38 @@ export default function alignIndents(tEditor: vsc.TextEditor, edit: vsc.TextEdit
 						type: "ILevelModel",
 						offset,
 						indent,
-						ch: []
+						ch: [
+							lModel
+						]
 					};
-					level.ch.push(lModel);
+					// level.ch.push(lModel);
 					last().ch.push(level);
 					stack.push(level);
 				} else if (offset < last().offset) {
-					const level: ILevelModel = {
-						type: "ILevelModel",
-						offset,
-						indent,
-						ch: []
-					};
-					level.ch.push(lModel);
 					while (stack.length) {
-						const discarded = stack.pop();
-						if (offset === last().offset) {
-							last().ch.push(lModel);
-							break;
-						} else if (last().offset < offset) {
-							last().ch.push(lModel);
-							break;
-						}
-						if (!stack.length) {
-							stack.push({
+						if (1 < stack.length) {
+							stack.pop();
+							if (offset === last().offset) {
+								last().ch.push(lModel);
+								break;
+							} else if (last().offset < offset) {
+								last().ch.push(lModel);
+								break;
+							} else if (offset < last().offset) {
+								continue;
+							}
+						} else {
+							const level: ILevelModel = {
 								type: "ILevelModel",
 								offset, 
 								indent,
-								ch: []
-							});
-							last().ch.push(discarded as ILevelModel);
-							last().ch.push(lModel);
+								ch: [
+									last(),
+									lModel
+								]
+							};
+							stack.unshift(level);
+							break;
 						}
 					}
 				} else {}
@@ -87,7 +88,6 @@ export default function alignIndents(tEditor: vsc.TextEditor, edit: vsc.TextEdit
 				model = stack[0],
 				baseIndent = model.indent,
 				newLines: string [] = [];
-			console.log(`model >>`, model);
 			recur(model);
 			let newText = newLines.join(EOL);
 
