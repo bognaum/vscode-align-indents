@@ -18,11 +18,11 @@ export default function alignIndentSteps(tEditor: vsc.TextEditor, edit: vsc.Text
 				text = doc.getText(wholeStringsRange),
 				lines = text.split(EOL),
 				lModels = lines.map((line: string, n): ILineModel => {
-					const [indent, content] = separateIndent(line);
+					const [indent, payload] = separateIndent(line);
 					return {
 						raw: line,
 						indent,
-						content,
+						payload,
 						indentOffset: getIndentOffset(indent, opts),
 						n,
 					};
@@ -38,7 +38,7 @@ export default function alignIndentSteps(tEditor: vsc.TextEditor, edit: vsc.Text
 				const 
 					[steps, shift] = getIndentSteps(v.indentOffset, opts),
 					newIndent = TAB.repeat(steps);
-				v.result = newIndent + v.content;
+				v.result = newIndent + v.payload;
 				for (let i = k + 1; i < stringCount; i++) {
 					lModels[i].indentOffset += shift;
 				}
@@ -96,15 +96,6 @@ function getLineOffsets(text: string, offset: number, eol: string ="\n"): [numbe
 	return [a, b];
 }
 
-interface ILineModel {
-	raw:          string;
-	result?:      string;
-	indent:       string;
-	content:      string;
-	indentOffset: number;
-	n:            number;
-}
-
 function separateIndent(line: string): [string, string] {
 	const m = line.match(/^(\s*)(.*)$/);
 	return m ? [m[1], m[2]] : ["", ""];
@@ -122,4 +113,13 @@ function getIndentSteps(offset: number, opts: vsc.TextEditorOptions): [number, n
 		fixedOffset = steps * tabSize,
 		shift = fixedOffset - offset;
 	return [steps, shift];
+}
+
+interface ILineModel {
+	raw:          string;
+	result?:      string;
+	indent:       string;
+	payload:      string;
+	indentOffset: number;
+	n:            number;
 }
