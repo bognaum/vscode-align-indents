@@ -164,15 +164,6 @@ function getIndentOffset(indent: string, opts: vsc.TextEditorOptions): number {
 	return indent.replace(/\t/g, " ".repeat(tabSize)).length;
 }
 
-function getIndentSteps(offset: number, opts: vsc.TextEditorOptions): [number, number] {
-	const 
-		tabSize = (typeof opts.tabSize === "number")? opts.tabSize : 1,
-		steps = Math.ceil(offset / tabSize),
-		fixedOffset = steps * tabSize,
-		shift = fixedOffset - offset;
-	return [steps, shift];
-}
-
 interface ILevelModel {
 	type:   "ILevelModel";
 	offset: number;
