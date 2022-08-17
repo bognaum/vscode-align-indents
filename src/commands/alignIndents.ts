@@ -102,7 +102,9 @@ export default function alignIndents(tEditor: vsc.TextEditor, edit: vsc.TextEdit
 						recur(ch, level + 1);
 					}
 				} else if (node.type === "ILineModel") {
-					const line = baseIndent + TAB.repeat(level)+node.content;
+					const 
+						pl = node.content,
+						line = pl ? baseIndent + TAB.repeat(level)+pl : "";
 					newLines.push(line);
 				} else {}
 			}
