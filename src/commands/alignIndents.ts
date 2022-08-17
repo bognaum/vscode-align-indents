@@ -41,7 +41,9 @@ export default function alignIndents(tEditor: vsc.TextEditor, edit: vsc.TextEdit
 					});
 				} else {}
 
-				if (offset === last().offset) {
+				if (!payload) {
+					last().ch.push(lModel);
+				} else if (offset === last().offset) {
 					last().ch.push(lModel);
 				} else if (last().offset < offset) {
 					const level: ILevelModel = {
