@@ -24,14 +24,13 @@ export default function selectHarmfulSpaces(tEditor: vsc.TextEditor, edit: vsc.T
 			const 
 				wholeStringsRange = getWholeLinesRange(doc, sel),
 				startOffset = doc.offsetAt(wholeStringsRange.start),
-				newSel = new vsc.Selection(wholeStringsRange.start, wholeStringsRange.end),
 				text = doc.getText(wholeStringsRange),
-				harmfulSpaces: [number, number][] = searchInIndents(text, EOL, / (?=\t)/g);
-			
-			harmfulSpaces.forEach((v,i,a) => {
-				v.forEach((v,i,a) => a[i] = startOffset + v);
-			});
-			console.log(`harmfulSpaces >>`, harmfulSpaces);
+				harmfulSpaces: [number, number][] = searchInIndents(
+					text, 
+					EOL, 
+					/ (?=\t)/g, 
+					startOffset
+				);
 
 			for (const offs of harmfulSpaces) {
 				newSelections.push(offsetsToSelection(doc, offs));

@@ -11,7 +11,8 @@ export {
 	getIndentOffset,
 };
 
-function searchInIndents(text: string, eol: string, re: RegExp): [number, number][] {
+function searchInIndents(text: string, eol: string, re: RegExp, shift: number =0): 
+[number, number][] {
 	const 
 		results: [number, number][] = [],
 		indents: [number, number][] = [],
@@ -42,6 +43,9 @@ function searchInIndents(text: string, eol: string, re: RegExp): [number, number
 			});
 		results.push(...regions);
 	}
+	results.forEach((v) => {
+		v.forEach((v,i,a) => a[i] = shift + v);
+	});
 	return results;
 }
 
