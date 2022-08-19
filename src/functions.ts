@@ -1,13 +1,73 @@
 import * as vsc from "vscode";
 
 export {
+	searchInIndents,
+	showInIndents,
 	getWholeLinesRange,
 	rangeToOffsets,
 	offsetsToRange,
+	offsetsToSelection,
 	getLineOffsets,
 	separateIndent,
 	getIndentOffset,
 };
+
+function searchInIndents(text: string, eol: string, re: RegExp): [number, number][] {
+	const 
+		results: [number, number][] = [],
+		indents: [number, number][] = [],
+		tLen = text.length;
+	let indentStart = 0;
+	for (let i = 0, isIndent = true; i < tLen; i++) {
+		if (isIndent) {
+			if (text[i] !== " " && text[i] !== "\t") {
+				isIndent = false;
+				indents.push([indentStart, i]);
+			}
+		} else {}
+		if (text.startsWith(eol, i)) {
+			i += eol.length - 1;
+			isIndent = true;
+			indentStart = i + 1;
+		}
+	}
+	for (const [a, b] of indents) {
+		const 
+			indentText = text.slice(a, b),
+			matches = [...indentText.matchAll(re)],
+			regions = matches.map((m) => {
+				const 
+					i0: number = m.index as number,
+					i1: number = i0 + m[0].length;
+				return [a + i0, a + i1] as [number, number];
+			});
+		results.push(...regions);
+	}
+	return results;
+}
+
+function showInIndents(text: string, eol: string, searched: string[]): [number, number][] {
+	const 
+		results: [number, number][] = [],
+		tLen = text.length;
+	for (let i = 0, isIndent = true; i < tLen; i++) {
+		if (isIndent) {
+			for (const ss of searched) {
+				if (text.startsWith(ss, i)) {
+					results.push([i, i + ss.length]);
+				}
+			}
+			if (text[i] !== " " && text[i] !== "\t") {
+				isIndent = false;
+			}
+		} else {}
+		if (text.startsWith(eol, i)) {
+			i += eol.length - 1;
+			isIndent = true;
+		}
+	}
+	return results;
+}
 
 function getWholeLinesRange(doc: vsc.TextDocument, range: vsc.Range): vsc.Range {
 	const 
@@ -27,6 +87,11 @@ function rangeToOffsets(doc: vsc.TextDocument, range: vsc.Range): [number, numbe
 function offsetsToRange(doc: vsc.TextDocument, offsets: [number, number]): vsc.Range {
 	const [a, b] = offsets.map(doc.positionAt);
 	return new vsc.Range(a, b);
+}
+
+function offsetsToSelection(doc: vsc.TextDocument, offsets: [number, number]): vsc.Selection {
+	const [a, b] = offsets.map(doc.positionAt);
+	return new vsc.Selection(a, b);
 }
 
 function getLineOffsets(text: string, offset: number, eol: string ="\n"): [number, number] {
