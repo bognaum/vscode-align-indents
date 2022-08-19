@@ -2,7 +2,6 @@ import * as vsc from "vscode";
 
 export {
 	searchInIndents,
-	showInIndents,
 	getWholeLinesRange,
 	rangeToOffsets,
 	offsetsToRange,
@@ -42,29 +41,6 @@ function searchInIndents(text: string, eol: string, re: RegExp): [number, number
 				return [a + i0, a + i1] as [number, number];
 			});
 		results.push(...regions);
-	}
-	return results;
-}
-
-function showInIndents(text: string, eol: string, searched: string[]): [number, number][] {
-	const 
-		results: [number, number][] = [],
-		tLen = text.length;
-	for (let i = 0, isIndent = true; i < tLen; i++) {
-		if (isIndent) {
-			for (const ss of searched) {
-				if (text.startsWith(ss, i)) {
-					results.push([i, i + ss.length]);
-				}
-			}
-			if (text[i] !== " " && text[i] !== "\t") {
-				isIndent = false;
-			}
-		} else {}
-		if (text.startsWith(eol, i)) {
-			i += eol.length - 1;
-			isIndent = true;
-		}
 	}
 	return results;
 }

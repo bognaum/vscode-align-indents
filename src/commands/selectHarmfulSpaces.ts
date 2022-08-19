@@ -1,7 +1,6 @@
 import * as vsc from "vscode";
 import {
 	searchInIndents,
-	showInIndents,
 	getWholeLinesRange,
 	rangeToOffsets,
 	offsetsToRange,
