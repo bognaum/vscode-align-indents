@@ -83,22 +83,22 @@
 				{"submenu": "bn-align-indents"}
 			],
 			"bn-align-indents": [
-				{"command": "align-indents.selectIndentsAuto",        "group": "3"},
+				{"command": "align-indents.selectIndentsAuto",         "group": "3"},
 				
-				{"command": "align-indents.selectIndentSpacesByAuto", "group": "4"},
-				{"command": "align-indents.selectIndentTabs",         "group": "4"},
+				{"command": "align-indents.selectIndentSpacesByAuto",  "group": "4"},
+				{"command": "align-indents.selectIndentTabs",          "group": "4"},
 				{"command": "align-indents.selectIndentsOfEmptyLines", "group": "4"},
 				
-				{"command": "align-indents.selectIndentSpacesBy1",    "group": "5"},
-				{"command": "align-indents.selectIndentSpacesBy2",    "group": "5"},
-				{"command": "align-indents.selectIndentSpacesBy3",    "group": "5"},
-				{"command": "align-indents.selectIndentSpacesBy4",    "group": "5"},
-				{"command": "align-indents.selectIndentSpacesBy5",    "group": "5"},
+				{"command": "align-indents.selectIndentSpacesBy1",     "group": "5"},
+				{"command": "align-indents.selectIndentSpacesBy2",     "group": "5"},
+				{"command": "align-indents.selectIndentSpacesBy3",     "group": "5"},
+				{"command": "align-indents.selectIndentSpacesBy4",     "group": "5"},
+				{"command": "align-indents.selectIndentSpacesBy5",     "group": "5"},
 				
-				{"command": "align-indents.alignIndents",             "group": "1"},
-				{"command": "align-indents.alignIndentSteps",         "group": "1"},
+				{"command": "align-indents.alignIndents",              "group": "1"},
+				{"command": "align-indents.alignIndentSteps",          "group": "1"},
 
-				{"command": "align-indents.selectHarmfulSpaces",      "group": "7"}
+				{"command": "align-indents.selectHarmfulSpaces",       "group": "7"}
 			]
 		},
 		"submenus": [
