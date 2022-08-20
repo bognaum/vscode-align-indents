@@ -1,13 +1,8 @@
 import * as vsc from "vscode";
 import {
-	searchInIndents,
 	getWholeLinesRange,
 	rangeToOffsets,
-	offsetsToRange,
 	offsetsToSelection,
-	getLineOffsets,
-	separateIndent,
-	getIndentOffset,
 } from "../functions";
 
 export default function selectIndentsOfEmptyLines(tEditor: vsc.TextEditor, edit: vsc.TextEditorEdit, ...args: any[]) {

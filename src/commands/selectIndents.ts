@@ -2,12 +2,7 @@ import * as vsc from "vscode";
 import {
 	searchInIndents,
 	getWholeLinesRange,
-	rangeToOffsets,
-	offsetsToRange,
 	offsetsToSelection,
-	getLineOffsets,
-	separateIndent,
-	getIndentOffset,
 } from "../functions";
 
 export {
@@ -22,27 +17,27 @@ export {
 };
 
 function selectIndentSpacesBy1(tEditor: vsc.TextEditor, edit: vsc.TextEditorEdit, ...args: any[]) {
-	selectBy(tEditor, edit, / /g);
+	_selectBy(tEditor, edit, / /g);
 }
 
 function selectIndentSpacesBy2(tEditor: vsc.TextEditor, edit: vsc.TextEditorEdit, ...args: any[]) {
-	selectBy(tEditor, edit, /  /g);
+	_selectBy(tEditor, edit, /  /g);
 }
 
 function selectIndentSpacesBy3(tEditor: vsc.TextEditor, edit: vsc.TextEditorEdit, ...args: any[]) {
-	selectBy(tEditor, edit, /   /g);
+	_selectBy(tEditor, edit, /   /g);
 }
 
 function selectIndentSpacesBy4(tEditor: vsc.TextEditor, edit: vsc.TextEditorEdit, ...args: any[]) {
-	selectBy(tEditor, edit, /    /g);
+	_selectBy(tEditor, edit, /    /g);
 }
 
 function selectIndentSpacesBy5(tEditor: vsc.TextEditor, edit: vsc.TextEditorEdit, ...args: any[]) {
-	selectBy(tEditor, edit, /     /g);
+	_selectBy(tEditor, edit, /     /g);
 }
 
 function selectIndentTabs(tEditor: vsc.TextEditor, edit: vsc.TextEditorEdit, ...args: any[]) {
-	selectBy(tEditor, edit, /\t/g);
+	_selectBy(tEditor, edit, /\t/g);
 }
 
 function selectIndentSpacesByAuto(tEditor: vsc.TextEditor, edit: vsc.TextEditorEdit, ...args: any[]) {
@@ -51,7 +46,7 @@ function selectIndentSpacesByAuto(tEditor: vsc.TextEditor, edit: vsc.TextEditorE
 		TAB  = opts.insertSpaces && typeof opts.tabSize === "number" ? 
 			" ".repeat(opts.tabSize) : "\t",
 		size:number = opts.tabSize as number;
-	selectBy(tEditor, edit, new RegExp(` {${size}}`, "g"));
+	_selectBy(tEditor, edit, new RegExp(` {${size}}`, "g"));
 }
 
 function selectIndentsAuto(tEditor: vsc.TextEditor, edit: vsc.TextEditorEdit, ...args: any[]) {
@@ -59,10 +54,10 @@ function selectIndentsAuto(tEditor: vsc.TextEditor, edit: vsc.TextEditorEdit, ..
 		opts = tEditor.options,
 		TAB  = opts.insertSpaces && typeof opts.tabSize === "number" ? 
 			" ".repeat(opts.tabSize) : "\t";
-	selectBy(tEditor, edit, new RegExp(TAB, "g"));
+	_selectBy(tEditor, edit, new RegExp(TAB, "g"));
 }
 
-function selectBy(
+function _selectBy(
 	tEditor: vsc.TextEditor, 
 	edit: vsc.TextEditorEdit, 
 	re: RegExp

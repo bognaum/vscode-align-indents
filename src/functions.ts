@@ -4,9 +4,9 @@ export {
 	searchInIndents,
 	getWholeLinesRange,
 	rangeToOffsets,
-	offsetsToRange,
+	// offsetsToRange,
 	offsetsToSelection,
-	getLineOffsets,
+	// getLineOffsets,
 	separateIndent,
 	getIndentOffset,
 };
