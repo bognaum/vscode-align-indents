@@ -14,7 +14,16 @@
 	"activationEvents": [
         "onCommand:align-indents.alignIndents",
         "onCommand:align-indents.alignIndentSteps",
-        "onCommand:align-indents.selectHarmfulSpaces"
+        "onCommand:align-indents.selectHarmfulSpaces",
+
+        "onCommand:align-indents.selectIndentSpacesBy1",
+        "onCommand:align-indents.selectIndentSpacesBy2",
+        "onCommand:align-indents.selectIndentSpacesBy3",
+        "onCommand:align-indents.selectIndentSpacesBy4",
+        "onCommand:align-indents.selectIndentSpacesBy5",
+        "onCommand:align-indents.selectIndentTabs",
+        "onCommand:align-indents.selectIndentSpacesByAuto",
+        "onCommand:align-indents.selectIndentsAuto"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
@@ -30,6 +39,38 @@
 			{
 				"command": "align-indents.selectHarmfulSpaces",
 				"title": "Align Indents: Select Harmful Spaces"
+			},
+			{
+				"command": "align-indents.selectIndentSpacesBy1",
+				"title": "Align Indents: Select Indent spaces by 1"
+			},
+			{
+				"command": "align-indents.selectIndentSpacesBy2",
+				"title": "Align Indents: Select Indent spaces by 2"
+			},
+			{
+				"command": "align-indents.selectIndentSpacesBy3",
+				"title": "Align Indents: Select Indent spaces by 3"
+			},
+			{
+				"command": "align-indents.selectIndentSpacesBy4",
+				"title": "Align Indents: Select Indent spaces by 4"
+			},
+			{
+				"command": "align-indents.selectIndentSpacesBy5",
+				"title": "Align Indents: Select Indent spaces by 5"
+			},
+			{
+				"command": "align-indents.selectIndentTabs",
+				"title": "Align Indents: Select Indent Tabs"
+			},
+			{
+				"command": "align-indents.selectIndentSpacesByAuto",
+				"title": "Align Indents: Select Indent spaces by Auto"
+			},
+			{
+				"command": "align-indents.selectIndentsAuto",
+				"title": "Align Indents: Select Indents Auto"
 			}
 		],
 		"menus": {
@@ -37,9 +78,21 @@
 				{"submenu": "bn-align-indents"}
 			],
 			"bn-align-indents": [
-				{"command": "align-indents.alignIndents"    },
-				{"command": "align-indents.alignIndentSteps"},
-				{"command": "align-indents.selectHarmfulSpaces"}
+				{"command": "align-indents.selectIndentsAuto",        "group": "3"},
+				
+				{"command": "align-indents.selectIndentSpacesByAuto", "group": "4"},
+				{"command": "align-indents.selectIndentTabs",         "group": "4"},
+				
+				{"command": "align-indents.selectIndentSpacesBy1",    "group": "5"},
+				{"command": "align-indents.selectIndentSpacesBy2",    "group": "5"},
+				{"command": "align-indents.selectIndentSpacesBy3",    "group": "5"},
+				{"command": "align-indents.selectIndentSpacesBy4",    "group": "5"},
+				{"command": "align-indents.selectIndentSpacesBy5",    "group": "5"},
+				
+				{"command": "align-indents.alignIndents",             "group": "1"},
+				{"command": "align-indents.alignIndentSteps",         "group": "1"},
+
+				{"command": "align-indents.selectHarmfulSpaces",      "group": "7"}
 			]
 		},
 		"submenus": [
