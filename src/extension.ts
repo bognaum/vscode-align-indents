@@ -14,6 +14,8 @@ import {
 	selectIndentsAuto
  } from "./commands/selectIndents";
 
+ import selectIndentsOfEmptyLines from './commands/selectIndentsOfEmptyLines';
+
 export function activate(context: vsc.ExtensionContext) {
 	const commands = [
 		// vsc.commands.registerCommand('my-command', () => {}),
@@ -30,6 +32,7 @@ export function activate(context: vsc.ExtensionContext) {
 		vsc.commands.registerTextEditorCommand('align-indents.selectIndentTabs',         selectIndentTabs        ),
 		vsc.commands.registerTextEditorCommand('align-indents.selectIndentSpacesByAuto', selectIndentSpacesByAuto),
 		vsc.commands.registerTextEditorCommand('align-indents.selectIndentsAuto',        selectIndentsAuto       ),
+		vsc.commands.registerTextEditorCommand('align-indents.selectIndentsOfEmptyLines', selectIndentsOfEmptyLines),
 	];
 
 	context.subscriptions.push(...commands);

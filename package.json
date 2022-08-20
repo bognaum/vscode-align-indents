@@ -23,7 +23,8 @@
         "onCommand:align-indents.selectIndentSpacesBy5",
         "onCommand:align-indents.selectIndentTabs",
         "onCommand:align-indents.selectIndentSpacesByAuto",
-        "onCommand:align-indents.selectIndentsAuto"
+        "onCommand:align-indents.selectIndentsAuto",
+        "onCommand:align-indents.selectIndentsOfEmptyLines"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
@@ -71,6 +72,10 @@
 			{
 				"command": "align-indents.selectIndentsAuto",
 				"title": "Align Indents: Select Indents Auto"
+			},
+			{
+				"command": "align-indents.selectIndentsOfEmptyLines",
+				"title": "Align Indents: Select Indents Of Empty Lines"
 			}
 		],
 		"menus": {
@@ -82,6 +87,7 @@
 				
 				{"command": "align-indents.selectIndentSpacesByAuto", "group": "4"},
 				{"command": "align-indents.selectIndentTabs",         "group": "4"},
+				{"command": "align-indents.selectIndentsOfEmptyLines", "group": "4"},
 				
 				{"command": "align-indents.selectIndentSpacesBy1",    "group": "5"},
 				{"command": "align-indents.selectIndentSpacesBy2",    "group": "5"},
