@@ -89,6 +89,10 @@ function selectBy(
 				newSelections.push(offsetsToSelection(doc, offs));
 			}
 		}
-		tEditor.selections = newSelections;
+		if (newSelections.length) {
+			tEditor.selections = newSelections;
+		} else {
+			vsc.window.showInformationMessage("Nothing to select.");
+		}
 	});
 }
