@@ -1,7 +1,7 @@
 {
   "name": "align-indents",
 	"displayName": "align-indents",
-	"description": "Aligns the indents",
+	"description": "Some commands to prettify the indents.",
 	"publisher": "Bognaum",
 	"icon": "./IMG/icon.jpg",
 	"version": "0.0.1",
