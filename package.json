@@ -3,7 +3,7 @@
 	"displayName": "align-indents",
 	"description": "Some commands to prettify the indents.",
 	"publisher": "Bognaum",
-	"icon": "./IMG/icon.jpg",
+	"icon": "./IMG/icon-03.png",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.70.0"
